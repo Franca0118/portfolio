@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
 
 
+
+::-webkit-scrollbar
+{
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+    background: var(--AzulClaro);
+    border-radius: 10px;
+}
 :root {
     --pretoFundo: rgb(44, 44, 44);
     --brancoFundo: rgb(228, 228, 228);
@@ -53,6 +63,7 @@ main{
 main nav {
     display: flex;
     width: 80vw;
+    margin-bottom: 10vh;
 
     
 }

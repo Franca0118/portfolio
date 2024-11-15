@@ -20,7 +20,7 @@ export default () => {
         document.querySelector("#btnportandenglish").classList.toggle("english")
         document.querySelector("body").classList.toggle("english2")
     }
-
+    
     function escuroClaro() {
         if (document.querySelector("html").classList.toString().includes('black')) {
             return (
@@ -36,72 +36,67 @@ export default () => {
             )
         }
     }
-
-    let header = () => {
-        let [headerTraducao, setHeader] = useState(() => {
-            if (document.querySelector("body").classList.toString().includes("english2")) {
-                return <>
-                    <Link to='/'><h3>Home</h3></Link>
-                    <Link to='/sobre'><h3>About</h3></Link>
-                    <Link to='/conhecimentos'><h3>Learns</h3></Link>
-                    <Link to='/projetos'><h3>Projects</h3></Link>
-                    <Link to='/contato'><h3>Contact</h3></Link></>
-            } else {
-                return <>
-                    <Link to='/'><h3>Home</h3></Link>
-                    <Link to='/sobre'><h3>Sobre</h3></Link>
-                    <Link to='/conhecimentos'><h3>Conhecimentos</h3></Link>
-                    <Link to='/projetos'><h3>Projetos</h3></Link>
-                    <Link to='/contato'><h3>Contato</h3></Link></>
-            }
-        })
-
-        useEffect(() => {
-            if (document.querySelector("body").classList.toString().includes("english2")) {
-                document.querySelector("#btnportandenglish").classList.toggle("english")
-                document.querySelector("#btnportandenglish").checked = true
-            }
-            rederizarBotoesHeader()
-            paginaAtualTraducao()
-
-        }, [])
-
-        let rederizarBotoesHeader = () => {
-            if (document.querySelector("body").classList.toString().includes("english2")) {
-
-                setHeader(<>
-                    <Link to='/'><h3>Home</h3></Link>
-                    <Link to='/sobre'><h3>About</h3></Link>
-                    <Link to='/conhecimentos'><h3>Learns</h3></Link>
-                    <Link to='/projetos'><h3>Projects</h3></Link>
-                    <Link to='/contato'><h3>Contact</h3></Link></>)
-            } else {
-                setHeader(<>
-                    <Link to='/'><h3>Home</h3></Link>
-                    <Link to='/sobre'><h3>Sobre</h3></Link>
-                    <Link to='/conhecimentos'><h3>Conhecimentos</h3></Link>
-                    <Link to='/projetos'><h3>Projetos</h3></Link>
-                    <Link to='/contato'><h3>Contato</h3></Link></>)
-            }
+    
+    let definirBotoesHeader = () => {
+        if (document.querySelector("body").classList.toString().includes("english2")) {
+    
+            setHeader(<>
+                <Link to='/'><h3>Home</h3></Link>
+                <Link to='/sobre'><h3>About</h3></Link>
+                <Link to='/conhecimentos'><h3>Learns</h3></Link>
+                <Link to='/projetos'><h3>Projects</h3></Link>
+                <Link to='/contato'><h3>Contact</h3></Link></>)
+        } else {
+            setHeader(<>
+                <Link to='/'><h3>Home</h3></Link>
+                <Link to='/sobre'><h3>Sobre</h3></Link>
+                <Link to='/conhecimentos'><h3>Conhecimentos</h3></Link>
+                <Link to='/projetos'><h3>Projetos</h3></Link>
+                <Link to='/contato'><h3>Contato</h3></Link></>)
         }
+    }
+    
+    let [headerTraducao, setHeader] = useState(() => {
+        if (document.querySelector("body").classList.toString().includes("english2")) {
+            return <>
+                <Link to='/'><h3>Home</h3></Link>
+                <Link to='/sobre'><h3>About</h3></Link>
+                <Link to='/conhecimentos'><h3>Learns</h3></Link>
+                <Link to='/projetos'><h3>Projects</h3></Link>
+                <Link to='/contato'><h3>Contact</h3></Link></>
+        } else {
+            return <>
+                <Link to='/'><h3>Home</h3></Link>
+                <Link to='/sobre'><h3>Sobre</h3></Link>
+                <Link to='/conhecimentos'><h3>Conhecimentos</h3></Link>
+                <Link to='/projetos'><h3>Projetos</h3></Link>
+                <Link to='/contato'><h3>Contato</h3></Link></>
+        }
+    })
+    
+    
+    
+    
+    let header = () => {
         return (
             <header id="meuHeader">
                 <div id='meuNomeHeader'>
-                <a href="/"><h3>João Victor França</h3></a>
+                    <a href="/"><h3>João Victor França</h3></a>
                 </div>
                 <div>
                     {escuroClaro()}
                     <motion.input className="PortAndEnglish" id="btnportandenglish" type="checkbox" onClick={() => {
                         togleInglish()
-                        rederizarBotoesHeader()
-                        paginaAtualTraducao()
+                        definirBotoesHeader()
+                        definirATraducaoDaPagina()
                     }} layout transition={spring} />
                     {headerTraducao}
-
+    
                 </div>
             </header>
         )
     }
+    
     // FIM CODIGO HEADER
     let todosIcones = () => {
         return <>
@@ -131,11 +126,11 @@ export default () => {
                 </motion.div></>
     }
     let [paginatraducao, settraducao] = useState()
-    let paginaAtualTraducao = () => {
+    let definirATraducaoDaPagina = () => {
         if (document.querySelector("body").classList.toString().includes("english2")) {
             settraducao(
                 <>
-                    <h1>My Know</h1>
+                    <h1>My knowledge</h1>
                     {todosIcones()}
                     <Link to='/projetos'><button>Projects <ion-icon name="arrow-forward-outline"></ion-icon> </button></Link>
                 </>
@@ -154,7 +149,15 @@ export default () => {
     }
 
 
-
+    useEffect(()=>{
+        // definir como os botoes vao ficar de acordo com a traducao da pagina
+        if (document.querySelector("body").classList.toString().includes("english2")) {
+            document.querySelector("#btnportandenglish").classList.toggle("english")
+            document.querySelector("#btnportandenglish").checked = true
+        }
+        definirBotoesHeader()
+        definirATraducaoDaPagina()
+    },[])
     return (
         <>
             {header()}

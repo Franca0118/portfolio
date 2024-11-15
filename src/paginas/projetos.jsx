@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { motion } from "framer-motion"
+import { backOut, motion } from "framer-motion"
 
 import { DiGithubBadge } from "react-icons/di";
 import { Link } from 'react-router-dom'
+import { tr } from 'framer-motion/client';
 
 
 export default () => {
 
+
+   
     // CODIGO HEADER E SEUS BOTOES
     const spring = {
         type: "spring",
@@ -17,7 +20,7 @@ export default () => {
         document.querySelector("#btnportandenglish").classList.toggle("english")
         document.querySelector("body").classList.toggle("english2")
     }
-
+    
     function escuroClaro() {
         if (document.querySelector("html").classList.toString().includes('black')) {
             return (
@@ -33,54 +36,48 @@ export default () => {
             )
         }
     }
-
-    let header = () => {
-        let [headerTraducao, setHeader] = useState(() => {
-            if (document.querySelector("body").classList.toString().includes("english2")) {
-                return <>
-                    <Link to='/'><h3>Home</h3></Link>
-                    <Link to='/sobre'><h3>About</h3></Link>
-                    <Link to='/conhecimentos'><h3>Learns</h3></Link>
-                    <Link to='/projetos'><h3>Projects</h3></Link>
-                    <Link to='/contato'><h3>Contact</h3></Link></>
-            } else {
-                return <>
-                    <Link to='/'><h3>Home</h3></Link>
-                    <Link to='/sobre'><h3>Sobre</h3></Link>
-                    <Link to='/conhecimentos'><h3>Conhecimentos</h3></Link>
-                    <Link to='/projetos'><h3>Projetos</h3></Link>
-                    <Link to='/contato'><h3>Contato</h3></Link></>
-            }
-        })
-
-        useEffect(() => {
-            if (document.querySelector("body").classList.toString().includes("english2")) {
-                document.querySelector("#btnportandenglish").classList.toggle("english")
-                document.querySelector("#btnportandenglish").checked = true
-            }
-            rederizarBotoesHeader()
-            paginaAtualTraducao()
-
-        }, [])
-
-        let rederizarBotoesHeader = () => {
-            if (document.querySelector("body").classList.toString().includes("english2")) {
-
-                setHeader(<>
-                    <Link to='/'><h3>Home</h3></Link>
-                    <Link to='/sobre'><h3>About</h3></Link>
-                    <Link to='/conhecimentos'><h3>Learns</h3></Link>
-                    <Link to='/projetos'><h3>Projects</h3></Link>
-                    <Link to='/contato'><h3>Contact</h3></Link></>)
-            } else {
-                setHeader(<>
-                    <Link to='/'><h3>Home</h3></Link>
-                    <Link to='/sobre'><h3>Sobre</h3></Link>
-                    <Link to='/conhecimentos'><h3>Conhecimentos</h3></Link>
-                    <Link to='/projetos'><h3>Projetos</h3></Link>
-                    <Link to='/contato'><h3>Contato</h3></Link></>)
-            }
+    
+    let definirBotoesHeader = () => {
+        if (document.querySelector("body").classList.toString().includes("english2")) {
+    
+            setHeader(<>
+                <Link to='/'><h3>Home</h3></Link>
+                <Link to='/sobre'><h3>About</h3></Link>
+                <Link to='/conhecimentos'><h3>Learns</h3></Link>
+                <Link to='/projetos'><h3>Projects</h3></Link>
+                <Link to='/contato'><h3>Contact</h3></Link></>)
+        } else {
+            setHeader(<>
+                <Link to='/'><h3>Home</h3></Link>
+                <Link to='/sobre'><h3>Sobre</h3></Link>
+                <Link to='/conhecimentos'><h3>Conhecimentos</h3></Link>
+                <Link to='/projetos'><h3>Projetos</h3></Link>
+                <Link to='/contato'><h3>Contato</h3></Link></>)
         }
+    }
+    
+    let [headerTraducao, setHeader] = useState(() => {
+        if (document.querySelector("body").classList.toString().includes("english2")) {
+            return <>
+                <Link to='/'><h3>Home</h3></Link>
+                <Link to='/sobre'><h3>About</h3></Link>
+                <Link to='/conhecimentos'><h3>Learns</h3></Link>
+                <Link to='/projetos'><h3>Projects</h3></Link>
+                <Link to='/contato'><h3>Contact</h3></Link></>
+        } else {
+            return <>
+                <Link to='/'><h3>Home</h3></Link>
+                <Link to='/sobre'><h3>Sobre</h3></Link>
+                <Link to='/conhecimentos'><h3>Conhecimentos</h3></Link>
+                <Link to='/projetos'><h3>Projetos</h3></Link>
+                <Link to='/contato'><h3>Contato</h3></Link></>
+        }
+    })
+    
+    
+    
+    
+    let header = () => {
         return (
             <header id="meuHeader">
                 <div id='meuNomeHeader'>
@@ -90,15 +87,16 @@ export default () => {
                     {escuroClaro()}
                     <motion.input className="PortAndEnglish" id="btnportandenglish" type="checkbox" onClick={() => {
                         togleInglish()
-                        rederizarBotoesHeader()
-                        paginaAtualTraducao()
+                        definirBotoesHeader()
+                        definirATraducaoDaPagina()
                     }} layout transition={spring} />
                     {headerTraducao}
-
+    
                 </div>
             </header>
         )
     }
+    
     // FIM CODIGO HEADER
 
 
@@ -106,7 +104,7 @@ export default () => {
     let [paginatraducao, settraducao] = useState()
 
 
-    let paginaAtualTraducao = () => {
+    let definirATraducaoDaPagina = () => {
         if (document.querySelector("body").classList.toString().includes("english2")) {
 
             settraducao(<>
@@ -142,20 +140,26 @@ export default () => {
 
     const [Meurepositorio, setMeurepositorio] = useState([])
     const [addBotaoFInala , setBotaoFinal] = useState()
-    useEffect(() => {
+    useEffect(()=>{
+        // definir como os botoes vao ficar de acordo com a traducao da pagina
+        if (document.querySelector("body").classList.toString().includes("english2")) {
+            document.querySelector("#btnportandenglish").classList.toggle("english")
+            document.querySelector("#btnportandenglish").checked = true
+        }
+        definirBotoesHeader()
+        definirATraducaoDaPagina()
+
         const buscarRepositorios = async () => {
             const response = await fetch('https://api.github.com/users/Franca0118/repos')
             const data = await response.json()
             setMeurepositorio(data)
         }
         buscarRepositorios()
-    }, [])
+    },[])
 
     return (
         <>
             {header()}
-
-            
             <div id='meuscards'>
             {paginatraducao}
                 {
@@ -197,7 +201,7 @@ export default () => {
                                 )
                             }
                         }) :
-                        <h1>Carregando...</h1>
+                        <h1>...</h1>
                 }
                 {addBotaoFInala}
             </div>
