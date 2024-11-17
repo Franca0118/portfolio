@@ -1,13 +1,14 @@
+
+
 import React, { useEffect, useState, UseRef } from "react";
 import { Link } from 'react-router-dom'
-
 import { motion } from "framer-motion"
-
+import { GiHamburgerMenu } from "react-icons/gi";
 
 
 
 export default () => {
-
+    let respAux = true
     // CODIGO HEADER E SEUS BOTOES
     const spring = {
         type: "spring",
@@ -143,6 +144,16 @@ export default () => {
 
     return (
         <>
+            <div id="responsividade" onClick={()=>{
+                if (respAux)
+                {
+                    document.querySelector("#meuHeader").style.marginLeft = "10px"
+                    respAux = false
+                } else {
+                    document.querySelector("#meuHeader").style.marginLeft = "-100%"
+                    respAux = true
+                }
+            }}><GiHamburgerMenu id="iconres"/></div>
             {header()}
             <main>
                 {paginatraducao}

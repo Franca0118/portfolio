@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { motion } from "framer-motion"
 import { Link } from 'react-router-dom'
-
+import { GiHamburgerMenu } from "react-icons/gi";
 import { SiGmail } from "react-icons/si";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaInstagram, FaGithub, FaDiscord, FaLinkedin  } from "react-icons/fa6";
@@ -10,6 +10,7 @@ import { FaInstagram, FaGithub, FaDiscord, FaLinkedin  } from "react-icons/fa6";
 
 
 export default ()=>{
+    let respAux = true
     // CODIGO HEADER E SEUS BOTOES
     const spring = {
         type: "spring",
@@ -130,6 +131,16 @@ export default ()=>{
     },[])
     return (
         <>
+        <div id="responsividade" onClick={()=>{
+                if (respAux)
+                {
+                    document.querySelector("#meuHeader").style.marginLeft = "10px"
+                    respAux = false
+                } else {
+                    document.querySelector("#meuHeader").style.marginLeft = "-100%"
+                    respAux = true
+                }
+            }}><GiHamburgerMenu id="iconres"/></div>
             {header()}
 
             <section>

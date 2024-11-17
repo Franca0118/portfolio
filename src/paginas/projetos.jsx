@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { backOut, motion } from "framer-motion"
-
+import { GiHamburgerMenu } from "react-icons/gi";
 import { DiGithubBadge } from "react-icons/di";
 import { Link } from 'react-router-dom'
 import { tr } from 'framer-motion/client';
 
 
 export default () => {
-
+    let respAux = true
 
    
     // CODIGO HEADER E SEUS BOTOES
@@ -159,6 +159,16 @@ export default () => {
 
     return (
         <>
+        <div id="responsividade" onClick={()=>{
+                if (respAux)
+                {
+                    document.querySelector("#meuHeader").style.marginLeft = "10px"
+                    respAux = false
+                } else {
+                    document.querySelector("#meuHeader").style.marginLeft = "-100%"
+                    respAux = true
+                }
+            }}><GiHamburgerMenu id="iconres"/></div>
             {header()}
             <div id='meuscards'>
             {paginatraducao}
