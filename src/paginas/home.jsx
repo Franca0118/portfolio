@@ -43,7 +43,7 @@ export default () => {
             setHeader(<>
                 <Link to='/'><h3>Home</h3></Link>
                 <Link to='/sobre'><h3>About</h3></Link>
-                <Link to='/conhecimentos'><h3>Learns</h3></Link>
+                <Link to='/conhecimentos'><h3>Knowledge</h3></Link>
                 <Link to='/projetos'><h3>Projects</h3></Link>
                 <Link to='/contato'><h3>Contact</h3></Link></>)
         } else {
