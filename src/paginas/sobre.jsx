@@ -113,8 +113,13 @@ let header = () => {
                         <h3>
                             <span><h1>About me</h1></span>
                             <img src="/eu.png" alt="" />
-                            Now I'm studying at a technical school, and I am looking to
-                            learn abilities and knowledge for programming area.
+                            I am currently studying Software Engineering at PUC Minas (1st semester), 
+                            and between 2022 and 2024, I completed my technical high school at Cotemig, 
+                            where I developed an excellent foundation for college and internships. I am 
+                            passionate about technology and always looking to expand my knowledge and 
+                            improve my skills in the area. At the moment, I am dedicated to learning 
+                            different programming languages and development concepts, along with the 
+                            internship and college.
                             <Link to='/conhecimentos'> <button>Knowledge <ion-icon name="arrow-forward-outline"></ion-icon> </button></Link>
                         </h3>
                     </nav>
@@ -128,10 +133,13 @@ let header = () => {
                         <h3>
                             <span><h1>Sobre mim</h1></span>
                             <img src="./eu.png" alt="" />
-                            Sou estudante do Cotemig, apaixonado por tecnologia, 
-                            estou sempre buscando expandir meus conhecimentos e 
-                            desenvolver habilidades na área. Atualmente, dedico-me a 
-                            aprender diferentes linguagens e conceitos de desenvolvimento
+                            Atualmente, estou cursando Engenharia de Software na PUC Minas (1º período)
+                            e, entre 2022 e 2024, concluí o ensino médio técnico no Cotemig, onde desenvolvi 
+                            uma excelente base para a faculdade e os estágios. Sou apaixonado por tecnologia 
+                            e estou sempre em busca de expandir meus conhecimentos e aprimorar minhas 
+                            habilidades na área. No momento, dedico-me ao aprendizado de diferentes 
+                            linguagens de programação e conceitos de desenvolvimento, conjunto o 
+                            estágio e faculdade.
                             <Link to='/conhecimentos'> <button>Conhecimentos <ion-icon name="arrow-forward-outline"></ion-icon> </button></Link>
                         </h3>
                     </nav>
